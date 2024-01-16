@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['user'])) {
 	header('location: index.php');
@@ -23,14 +22,32 @@ $gender = $_SESSION['user']['gender'];
 	<title>Profile</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<style>
+		.wrap {
+			width: 100%;
+			max-width: 600px;
+			margin: 40px auto;
+		}
+
+		.icon i {
+			font-size: 50px;
+		}
+	</style>
 </head>
 
 <body>
-	<div class="container mt-5">
+	<div class="container wrap mt-5">
 		<?php if (!isset($_GET["incorrect"])) : ?>
-			<div class="alert alert-success">You are login successfully!</div>
+			<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+				<strong>You are now logged in successfully!</strong>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
 		<?php endif ?>
-		<h1 class="mb-3"><?php echo $fname ?> (Manager)</h1>
+		<div class="icon text-center">
+			<i class="bi bi-person-circle h1"></i>
+		</div>
+		<h2 class="my-3 text-center"><?php echo $fname . " " . "($general)" ?> </h2>
 		<ul class="list-group">
 			<li class="list-group-item">
 				<b>Email: </b> <?php echo $email ?>
@@ -48,8 +65,10 @@ $gender = $_SESSION['user']['gender'];
 				<b>Gender: </b> <?php echo $gender ?>
 			</li>
 		</ul>
-		</br>
-		<a href="_actions/logout.php">Logout</a>
+		<!-- </br> -->
+		<div class="text-center mt-3">
+			<a href="_actions/logout.php">Logout</a>
+		</div>
 	</div>
 </body>
 
