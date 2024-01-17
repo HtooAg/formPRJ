@@ -14,22 +14,12 @@ include_once('./_actions/create.php');
 			max-width: 700px !important;
 			margin: 40px auto;
 		}
-
-		.form {
-			display: flex;
-		}
 	</style>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body>
 	<div class="wrap container">
-		<?php if (isset($_GET["error"])) : ?>
-			<div class="alert alert-danger alert-dismissible fade show text-center" id="alertBox" role="alert">
-				<strong><?php echo ($_GET["error"]); ?></strong>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		<?php endif ?>
 		<h1 class="h3 mb-3 text-center">User Table Form</h1>
 
 		<form class="row" action="#" method="post">
