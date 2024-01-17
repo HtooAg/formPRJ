@@ -1,5 +1,6 @@
 <?php
 include_once("./_actions/dbConfig.php");
+include_once("./_actions/login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,10 +59,5 @@ include_once("./_actions/dbConfig.php");
 		</div>
 	</div>
 </body>
-<script>
-	setTimeout(() => {
-		document.querySelector("#alertBox").style.display = "none";
-	}, 3000)
-</script>
 
 </html>

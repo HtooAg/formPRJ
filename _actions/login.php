@@ -1,6 +1,6 @@
 <?php
 session_start();
-$fname = $_POST["fname"];
+$name = $_POST["name"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $phone = $_POST["phone"];
@@ -18,7 +18,7 @@ if (!empty($email) && !empty($password)) {
 
 	if ($validUser) {
 		$_SESSION["user"] = [
-			"fname" => $fname,
+			"name" => $fname,
 			"email" => $email,
 			"password" => $password,
 			"phone" => $phone,
@@ -27,12 +27,12 @@ if (!empty($email) && !empty($password)) {
 			"general" => $general,
 			"gender" => $gender,
 		];
-		header('location: ../profile.php');
+		header('location: ../viewLogin.php');
 	} else {
 		$errorMessage = "Login failed! Please try again.";
-		header('location: ../index.php?error=' . $errorMessage);
+		header('location: createLogin.php?error=' . $errorMessage);
 	}
 } else {
-	$errorMessage = "Email and password are required.";
-	header('location: ../index.php?error=' . $errorMessage);
+	$errorMessage = "You need to fill the form first!";
+	header('location: createLogin.php?error=' . $errorMessage);
 }

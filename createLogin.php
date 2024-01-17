@@ -20,13 +20,15 @@ include_once('./_actions/create.php');
 		}
 	</style>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<div class="wrap container">
 		<?php if (isset($_GET["error"])) : ?>
-			<div class="alert alert-danger"><?php echo ($_GET["error"]); ?></div>
+			<div class="alert alert-danger alert-dismissible fade show text-center" id="alertBox" role="alert">
+				<strong><?php echo ($_GET["error"]); ?></strong>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
 		<?php endif ?>
 		<h1 class="h3 mb-3 text-center">User Table Form</h1>
 
@@ -88,6 +90,11 @@ include_once('./_actions/create.php');
 			</div>
 		</form>
 	</div>
+	<script>
+		setTimeout(() => {
+			document.querySelector("#alertBox").style.display = "none";
+		}, 3000);
+	</script>
 </body>
 
 </html>
