@@ -1,5 +1,5 @@
 <?php
-include_once("dbConfig.php");
+include_once("./_actions/dbConfig.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +9,19 @@ include_once("dbConfig.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<div class="container mt-4">
 		<div class="row justify-content-center ">
 			<div class="col-xl-12 col-lg-10">
+				<?php if (!isset($_GET["incorrect"])) : ?>
+					<div class="alert alert-success alert-dismissible fade show text-center" id="alertBox" role="alert">
+						<strong>You are now inserted new record successfully!</strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				<?php endif ?>
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead>
@@ -32,23 +39,29 @@ include_once("dbConfig.php");
 						<tbody class="table-group-divider">
 							<?php foreach ($result as $row) : ?>
 								<tr>
-									<th scope="row"><?= $row->id ?></th>
-									<td scope="row"><?= $row->name ?></td>
-									<td scope="row"><?= $row->email ?></td>
-									<td scope="row"><?= $row->password ?></td>
-									<td scope="row"><?= $row->phone ?></td>
-									<td scope="row"><?= $row->address ?></td>
-									<td scope="row"><?= $row->general ?></td>
-									<td scope="row"><?= $row->gender ?></td>
+									<th scope="row"><?php echo $row->id ?></th>
+									<td scope="row"><?php echo $row->name ?></td>
+									<td scope="row"><?php echo $row->email ?></td>
+									<td scope="row"><?php echo $row->password ?></td>
+									<td scope="row"><?php echo $row->phone ?></td>
+									<td scope="row"><?php echo $row->address ?></td>
+									<td scope="row"><?php echo $row->general ?></td>
+									<td scope="row"><?php echo $row->gender ?></td>
 								</tr>
 							<?php endforeach ?>
-
+							<a href="./createLogin.php" class="btn btn-success">Add</a>
 						</tbody>
+
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<script>
+	setTimeout(() => {
+		document.querySelector("#alertBox").style.display = "none";
+	}, 3000)
+</script>
 
 </html>
