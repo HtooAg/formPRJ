@@ -1,5 +1,7 @@
 <?php
 include_once("./_actions/dbConfig.php");
+$statement = $db->query("SELECT * FROM reg");
+$result = $statement->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +44,7 @@ include_once("./_actions/dbConfig.php");
 									<td scope="row"><?= $row->address ?></td>
 									<td scope="row"><?= $row->general ?></td>
 									<td scope="row"><?= $row->gender ?></td>
-									<td scope="row"><a href="" class="btn btn-success">Edit</a></td>
+									<td scope="row"><a href="./editForm.php?id=<?= $row->id ?>" class="btn btn-success">Edit</a></td>
 									<td scope="row"><a href="./_actions/delete.php?id=<?= $row->id ?>" class="btn btn-danger">Delete</a></td>
 								</tr>
 							<?php endforeach ?>

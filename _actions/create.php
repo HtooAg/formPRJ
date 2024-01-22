@@ -13,9 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$db->query($sql);
 
 	$error = "Error inserting record!";
-	if ($sql == TRUE) {
-		echo "Record updated successfully" . "</br>";
-	} else {
+	if ($sql == FALSE) {
 		echo "Error: " . $sql . "<br>" . $error;
 	}
 	header('location:viewLogin.php');
