@@ -9,13 +9,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$general = $_POST['general'];
 	$gender = $_POST['gender'];
 
-	$sql = "INSERT INTO reg (name, email, password, phone, address, general, gender) VALUES ('$name', '$email', '$password', '$phone', '$address', '$general', '$gender')";
-	$db->query($sql);
-
-	$error = "Error inserting record!";
-	if ($sql == FALSE) {
-		echo "Error: " . $sql . "<br>" . $error;
+	try {
+		$sql = "INSERT INTO reg (name, email, password, phone, address, general, gender) VALUES (:name, :email, :password, :phone, :address, :general, :gender)";
+		$statement = $db->prepare($sql);
+		$result = [
+			':name' => $name,
+			':email' => $email,
+			':password' => $password,
+			':phone' => $phone,
+			':address' => $address,
+			':general' => $general,
+			':gender' => $gender,
+		];
+		$statement->execute($result);
+		header('location:viewLogin.php');
+		exit();
+	} catch (PDOException $e) {
+		echo "Error: " . $e->getMessage();
+		exit();
 	}
-	header('location:viewLogin.php');
-	exit();
 }
